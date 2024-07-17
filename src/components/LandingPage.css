@@ -1,0 +1,156 @@
+.Intern {
+      font-family: 'Poppins', sans-serif;
+      color: orange;
+      font-size: 32pt;
+    }
+    
+    .India {
+      font-family: 'Poppins', sans-serif;
+      color: green;
+      font-size: 32pt;
+    }
+    .image-container {
+               
+      width: 100%;
+      overflow: hidden;
+  }
+  .responsive-image {
+      width: 100%;
+      height: auto;
+      transition: transform 0.1s ease;
+  }
+  @media (max-width: 640px) {
+      .image-container {
+          width: 80%;
+          margin-top: 90pt;
+          transform: scale(2);
+          transform-origin: center;
+      }
+      .responsive-image {
+          transform: scale(1);
+          transform-origin: center;
+      }
+  }div>
+    .custom-image-container {
+      margin-top: 20pt;
+border-radius: 14pt;
+overflow: hidden;
+box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+}
+
+.custom-rounded-image {
+border-radius: 14pt;
+display: block;
+width: calc(100% + 2px);
+height: calc(100% + 2px);
+margin: -1px;
+object-fit: cover;
+}
+#container {
+        
+      margin: auto;
+      width: 100vw;
+      height: 20pt;
+      top: 0;
+      bottom: 0;
+      filter: url(#threshold) blur(0.6px);
+  }
+
+  #text1, #text2 {
+      position: absolute;
+      width: 100%;
+      display: inline-block;
+      font-family: 'Raleway', sans-serif;
+      font-size: 45pt;
+      
+      user-select: none;
+  }
+
+    
+    .image-container {
+      width: 100%;
+      overflow: hidden;
+    }
+    
+    .responsive-image {
+      width: 100%;
+      height: auto;
+      transition: transform 0.1s ease;
+    }
+    
+    @media (max-width: 640px) {
+      .image-container {
+        width: 80%;
+        margin-top: 90pt;
+        transform: scale(2);
+        transform-origin: center;
+      }
+      .responsive-image {
+        transform: scale(1);
+        transform-origin: center;
+      }
+    }
+    
+    #floatingApplyButton {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1000;
+      padding: 10px 20px;
+      background-color: #3B82F6;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+    }
+    .custom-image-container1 {
+      border-radius: 5pt; /* Match this with the image's border-radius */
+      overflow: hidden; /* Ensures the shadow doesn't affect layout */
+      box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px; /* Adjust shadow as needed */
+  }
+  .custom-rounded-image1 {
+      border-radius: 10pt; /* Adjust this value to increase or decrease roundness */
+      display: block; /* Removes bottom margin/whitespace */
+  }
+    #floatingApplyButton {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 1000;
+      padding: 10px 20px;
+      background-color: #3B82F6; /* Tailwind's blue-500 */
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+      transition: all 0.3s ease;
+  }
+
+  #floatingApplyButton:hover {
+      background-color: #2563EB; /* Tailwind's blue-600 */
+      transform: translateY(-2px);
+      box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+  }
+    #floatingApplyButton:hover {
+      background-color: #2563EB;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+    }
+    
+    .custom-image-container {
+      border-radius: 14pt;
+      overflow: hidden;
+      box-shadow: rgba(0, 0, 0, 0.09) 0px 2px 1px, rgba(0, 0, 0, 0.09) 0px 4px 2px, rgba(0, 0, 0, 0.09) 0px 8px 4px, rgba(0, 0, 0, 0.09) 0px 16px 8px, rgba(0, 0, 0, 0.09) 0px 32px 16px;
+    }
+    
+    .custom-rounded-image {
+      border-radius: 14pt;
+      display: block;
+      width: calc(100% + 2px);
+      height: calc(100% + 2px);
+      margin: -1px;
+      object-fit: cover;
+    }

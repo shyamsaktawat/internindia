@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Scroll Pane</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js">
+    <style>
+        * { -o-box-sizing: border-box; box-sizing: border-box; }
+html,body{ width:100%; height:100%; margin:0; padding:0;}
+body{ overflow:hidden; color:rgba(255,255,255,0.5);font-family: 'Poppins', sans-serif; }
+#ScrollPane{ position:relative; width:100%; height:100%; }
+.scr,.pane{ position:relative; width:100%; height:100%;font-size:30px;}
+b{font-size:80px; display:block; color:#ffffff; text-shadow:1px 1px 0 #bbbbbb,2px 2px 0 #cccccc,3px 3px 0 #cccccc,4px 4px 0 #cccccc,5px 5px 0 #cccccc,5px 5px 10px rgba(0,0,0,0.3); }
+
+
+
+span{ display:block; text-align:center;}
+.horiz { position:relative; width:100%; height:100%; }
+.horiz .spane{ overflow:hidden; font-size:0; position:relative; width:100%; height:100%; white-space:nowrap;} 
+.horiz .pane{ display:inline-block; width:100%; }
+.ct{  position:absolute; top:0; left:0; width:100%; height:100%; display: -webkit-box;display: -ms-flexbox;display: -webkit-flex;display: flex;-webkit-box-pack: center;-ms-flex-pack: center;-webkit-justify-content: center;justify-content: center;-webkit-box-align: center;-ms-flex-align: center;-webkit-align-items: center;align-items: center;}
+ .an .ct{transform:translate3D(0,20px,0) rotateX(90deg) scale(0.5); opacity:0; transition:all 0.5s cubic-bezier(0.175, 0.885, 0.380, 1.470);}
+.left,.right{ overflow:hidden; display:block; position:absolute; height:100%; width:50%; top:0; }
+.right{ left:50%;}
+.scrollup{ position:absolute; width:200px; top:10px; left:50%; margin-left:-100px; z-index:3000; font-size:20px; text-align:center;}
+.scrolldown{ position:absolute; width:200px; bottom:10px; left:50%; margin-left:-100px; z-index:3000; font-size:20px; text-align:center;}
+.an.visible .ct{ transform:translate3D(0,0,0) scale(1); opacity:1; }
+#Helper{ position:fixed; background:#ffffff; bottom:0; left:0; padding:5px; z-index:3000; font-size:12px; color:#1e1e1e;}
+    </style>
+</head>
+<body>
+    <div id="ScrollPane">
+        <div class="scr pane prt" style="background:#da4236;" data-id="Welcome"><div class="ct"><b>Scroll !</b></div><div class="scrolldown">Scroll down<br><i class="fa fa-arrow-down" aria-hidden="true"></i></div></div>	
+        <div class="scr pane prt an" style="background:#1e1e1e;" data-id="scr02"><div class="ct"><b>Fullscreen</b></div><div class="scrolldown">Scroll down<br><i class="fa fa-arrow-down" aria-hidden="true"></i></div></div>	
+        <div class="scr pane prt an" style="background:#da4236;" data-id="scr03"><div class="ct"><b>Fullscreen</b></div><div class="scrolldown">Scroll down<br><i class="fa fa-arrow-down" aria-hidden="true"></i></div></div>	
+        <div class="scr prt horiz">
+            <div class="spane">
+                <div class="pane an" style="background:#001f3f;" data-id="Horizontal01"><div class="ct"><span>Horizontal<br><b>Slide A</b></span></div></div>
+                <div class="pane an" style="background:#0074D9;" data-id="Horizontal02"><div class="ct"><span>Horizontal<br><b>Slide B</b></span></div></div>
+                <div class="pane an" style="background:#7FDBFF;" data-id="Horizontal03"><div class="ct"><span>Horizontal<br><b>Slide C</b></span></div></div>
+            </div>
+        </div>	
+        <div class="scr pane prt an" style="background:#da4236;" data-id="scr04"><div class="ct"><b>Fullscreen</b></div></div>
+        <div class="scr prt tab">
+            <div class="left spane">
+                <div class="pane an" style="background:#2ECC40;" data-id="Vertical01"><div class="ct"><b>Slide A</b></div></div>
+                <div class="pane an" style="background:#01FF70;" data-id="Vertical02"><div class="ct"><b>Slide B</b></div></div>
+                <div class="pane an" style="background:#2ECC40;" data-id="Vertical03"><div class="ct"><b>Slide C</b></div></div>
+            </div>
+            <div class="right scrzone" style="background:#3D9970;"><div class="ct"><span>Vertical Split<br><b>Left</b></span></div></div>
+        </div>	
+        <div class="scr pane prt an" style="background:#da4236;" data-id="scr05"><div class="ct"><b>Fullscreen</b></div></div>
+        <div class="scr prt tab">
+            <div class="left scrzone" style="background:#FF4136;"><div class="ct"><span>Vertical Split<br><b>Right</b></span></div></div>
+            <div class="right spane">
+                <div class="pane an" style="background:#85144b;" data-id="Vertical04"><div class="ct"><b>Slide A</b></div></div>
+                <div class="pane an" style="background:#F012BE;" data-id="Vertical05"><div class="ct"><b>Slide B</b></div></div>
+                <div class="pane an" style="background:#B10DC9;" data-id="Vertical06"><div class="ct"><b>Slide C</b></div></div>
+            </div>
+        </div>
+        <div class="scr pane prt an" style="background:#da4236;" data-id="Conclusion"><div class="ct"><span><b>THE END</b><br>Works with Fox, Chrome, Edge, Opera, ...</span></div><div class="scrollup"><i class="fa fa-arrow-up" aria-hidden="true"></i><br>Scroll up</div></div>
+    </div>
+    
+    <div id="Helper"></div>
+    <script>
+        Init();
+
+//Mouse Wheel event : jQuery Mouse Wheel Plugin
+$('.pane,.scrzone').mousewheel(function(event) {
+	event.preventDefault();
+	if($ScrollState==false){$ScrollState=true;if(event.deltaY < 0){UpdateScreen('+');}else if(event.deltaY > 0){UpdateScreen('-');}else{$ScrollState=false;}}
+});
+
+//Init
+function Init(){
+	$ScrollSpeed = 0.3; //Vitesse animation
+	$ScrollState=false; //Scroll possible si True - Si False anim déjà en cours //
+	$ActualSlide = $CibleSlide = $('.pane').first().attr('data-id'); //Première slide
+	$ListSlides = new Array(); $('.pane').each(function(){ $ListSlides.push($(this).attr('data-id')); }); //Liste des slides (.pane)
+	TweenMax.to(window, 0, {scrollTo:0});
+	TweenMax.to('.spane', 0, {scrollTo:{y:0, x:0}});
+	$('.visible').removeClass('visible');
+	$('#Helper').html("Init()");//Helper
+}
+
+//ANIMATE
+function UpdateScreen(operator){
+	$ActualSlide = $CibleSlide;
+	if(operator=="+"){ $CibleSlide = $ListSlides[$ListSlides.indexOf($ActualSlide)+1]; }else{ $CibleSlide = $ListSlides[$ListSlides.indexOf($ActualSlide)-1]; }//Si + slide suivante / si - slide précédente
+	$('#Helper').html("From <strong>"+$ActualSlide+"</strong> to <strong>"+$CibleSlide+"</strong>");//helper
+	if(!$CibleSlide){ $ScrollState=false; $('#Helper').html("Break");$CibleSlide = $ActualSlide; return; }//Arrete tout si pas de slide avant/après
+	$ActualSlideDOM = $('.pane[data-id='+$ActualSlide+']');
+	$CibleSlideDOM = $('.pane[data-id='+$CibleSlide+']');
+	//Scroll To : Greensock GSAP
+	if( $ActualSlideDOM.closest('.prt').find('.spane').length && (operator=="+" && $ActualSlideDOM.next('.pane').length  ||  operator=="-" && $ActualSlideDOM.prev('.pane').length ) ){
+		TweenMax.to($ActualSlideDOM.closest('.spane'), $ScrollSpeed, {scrollTo:'.pane[data-id='+$CibleSlide+']',ease: Power2.easeOut,onComplete:function(){$ScrollState=false; $CibleSlideDOM.addClass('visible');}}); //Horizontal ou vertical
+	}else{
+		TweenMax.to(window, $ScrollSpeed, {scrollTo:'.pane[data-id='+$CibleSlide+']',ease: Power2.easeOut,onComplete:function(){$ScrollState=false; $CibleSlideDOM.addClass('visible');}});//Normal
+	}
+}
+
+//Init() On Resize
+$(window).resize(function(){
+	Init();
+});
+    </script>
+</body>
+</html>
